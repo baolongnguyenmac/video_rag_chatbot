@@ -1,19 +1,21 @@
-from extractor.text_chunking import TextChunking
+from tools.text_tool.text_chunking import TextChunking
 
 # embedding and storing
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from langchain_chroma.vectorstores import Chroma
+import chromadb
 from langchain_core.documents.base import Document
 
 # tool
 from langchain_core.tools import tool, BaseTool
 
+from dotenv import load_dotenv
+
 class TextVectorDB:
     def __init__(self, collection_name:str, persist_directory:str) -> None:
         print('Init text database...')
+        self.vector_store = 
         self.vector_store:Chroma = Chroma(
             collection_name=collection_name,
-            embedding_function=GoogleGenerativeAIEmbeddings(model="models/text-embedding-004"),
+            embedding_function=GoogleGenerativeAIEmbeddings(model="gemini-embedding-2-preview"),
             persist_directory=persist_directory
         )
         print('~'*80)
@@ -31,11 +33,11 @@ class TextVectorDB:
 
     def add_sub(self, filepath:str) -> None:
         print(f'Importing subtitle: {filepath.split("/")[-1]}')
-        chunks:list[Document] = TextChunking.get_srt_chunk(filepath)
+        chunks:list[Document] = TextChunking.get_subtitle_chunk(filepath)
 
         # hash content of chunk to obtain an unique id
-        ids = [str(hash(doc.page_content)) for doc in chunks]
-        self.vector_store.add_documents(documents=chunks, ids=ids)
+        ids = [str(hash(doc.page_content)) for doc in chunks[:3]]
+        self.vector_store.add_documents(documents=chunks[:3], ids=ids)
 
         print(f'{filepath.split("/")[-1]} imported!')
         print('~'*80)
@@ -71,3 +73,10 @@ class TextVectorDB:
             return content, relevant_docs
 
         return text_retrieve
+
+if __name__=='__main__':
+    load_dotenv()
+    text_vector_db = TextVectorDB('test', './data/db')
+    text_vector_db.add_sub('./data/video/The Android Tab/The Android Tab.json')
+
+    print('\n'.join(text_vector_db.vector_store.similarity_search('Iphone', k=3)))

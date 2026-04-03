@@ -1,4 +1,4 @@
-from extractor.text_chunking import TextChunking
+from tools.text_chunking import TextChunking
 from langchain_core.documents.base import Document
 from pytubefix import YouTube
 from pytubefix.cli import on_progress

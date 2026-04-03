@@ -1,5 +1,6 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+
 # python 3.11
-# pip-tools-7.4.1
 
 python-dotenv
 gradio
@@ -8,19 +9,18 @@ gradio
 langchain
 langgraph
 langchain_community
-langchain-google-genai
-langchain-chroma
 
 # tool
 pypdf
 protobuf
 chromadb
+torch
 open-clip-torch
 
 # youtube video + sub
+openai-whisper
 opencv-python
 pytubefix
-pysrt
 opencv-python
 
 pytest

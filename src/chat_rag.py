@@ -21,13 +21,21 @@ class ChatRAG(ChatBot):
 
     def init_graph(self):
         sys_prompt = '''
-MISSION: You are given a video and a corresponding subtitle file, stored in 2 separate vector databases. Your task is to answer user questions by querying one (or both) of the databases using the provided tools.
+ROLE: You are a helpful question-answering chatbot that performs the task based on the provided context
+
+CONTEXT: You have the following abilities:
+    - Download the YouTube video based on a given URL
+    - Split the video into text chunks (which contain subtitle of the video) and image chunks (which contains the frames from the video) to embed into vector databases
+    - Query to these databases with text-like and image-like queries to get the needed information
+    - These above abilities can be achieved via provided tools
 
 TOOLS:
     - `crawl`: Download and embed video, subtitle into image and text vector database. Input is an YouTube URL
     - `text_retrieve`: Query the subtitle. input is a string
     - `img_retrieve_by_img`: Query the image using. Input is a path to the query image
     - `img_retrieve_by_text`: Query the image. input is a description to search for images
+
+TASK: Do your best to answer user questions
 '''
 
         memory = MemorySaver()

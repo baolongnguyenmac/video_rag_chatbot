@@ -1,6 +1,6 @@
 from tools.text_vector_db import TextVectorDB
 from tools.img_vector_db import ImageVectorDB
-from extractor.video_chunking import VideoChunking
+from tools.video_chunking import VideoChunking
 
 from langchain_core.tools import tool, BaseTool
 

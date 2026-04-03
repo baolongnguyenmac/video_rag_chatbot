@@ -1,4 +1,4 @@
-from extractor.video_chunking import VideoChunking
+from tools.video_chunking import VideoChunking
 
 import os
 from shutil import rmtree

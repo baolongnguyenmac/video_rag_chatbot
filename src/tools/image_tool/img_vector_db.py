@@ -1,4 +1,4 @@
-from extractor.video_chunking import VideoChunking
+from tools.image_tool.video_chunking import VideoChunking
 
 import chromadb
 from chromadb.utils.embedding_functions import OpenCLIPEmbeddingFunction

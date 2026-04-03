@@ -5,14 +5,31 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python Debugger: Module",
+            "name": "Video Chunking",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "tools.video_chunking",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            },
+        },
+        {
+            "name": "Text vector DB",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "tools.text_vector_db",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            },
+        },
+        {
+            "name": "Chat RAG",
             "type": "debugpy",
             "request": "launch",
             "module": "chat_rag",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}/src"
             },
-            // "cwd": "${workspaceFolder}"
         }
     ]
 }
