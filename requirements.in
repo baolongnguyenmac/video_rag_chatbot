@@ -11,16 +11,11 @@ langgraph
 langchain_community
 
 # tool
-pypdf
-protobuf
 chromadb
-torch
-open-clip-torch
-
-# youtube video + sub
 openai-whisper
 opencv-python
 pytubefix
 opencv-python
+yt-dlp
 
 pytest
